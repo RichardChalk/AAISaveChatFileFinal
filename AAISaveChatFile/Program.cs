@@ -44,6 +44,10 @@ namespace AAISaveChatFile
             }
 
             // Save chat to file
+            // q1. NÄR sparas chatfilen?
+            // q2. Vad gör .Select()?
+            // q3. Är det möjligt att skriva till en annan mapp?
+            // q4. Vad gör DateTime.Now:yyyyMMdd_HHmm?
             var chatFolder = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\..\ChatFiles"));
             Directory.CreateDirectory(chatFolder);
 
@@ -51,7 +55,8 @@ namespace AAISaveChatFile
                 chatFolder,
                 $"chat_{DateTime.Now:yyyyMMdd_HHmm}.txt");
 
-            File.WriteAllLines(filePath, messages.Select(m => m.Content[0].Text));
+            File.WriteAllLines(filePath, messages
+                .Select(m => m.Content[0].Text));
 
             Console.WriteLine($"Chathistorik sparad till {filePath}");
         }
